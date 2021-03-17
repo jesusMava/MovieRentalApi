@@ -12,16 +12,16 @@ const useStyles = makeStyles({
   }
 })
 const NavBar = () => {
-  const [value, setValue] = React.useState(0);
+  const [option, setOption] = React.useState(0);
   const classes = useStyles();
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setOption(newValue);
   };
 
   return (
     <Paper className={classes.root}>
       <Tabs
-        value={value}
+        value={option}
         onChange={handleChange}
         indicatorColor="primary"
         textColor="primary"
