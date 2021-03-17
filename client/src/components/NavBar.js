@@ -42,7 +42,7 @@ const NavBar = () => {
       >
         <Tab label='Users' component={Link} to='/users'/>
         <Tab label='Movies' component={Link} to='/movies'/>
-        <Tab label='History' component={Link} to='/history'/>
+        <Tab label='Rental/History' component={Link} to='/history'/>
       </Tabs>
     </Paper>
   ); 
