@@ -30,12 +30,13 @@ export default function User() {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [userData, setUserData] = React.useState({
+  const inicialDataUser = {
     'name': '',
-    'email': ""
-  });
+    'email': ''
+  } 
 
   const [rows, setRows] = useState([]);
+  const [userData, setUserData] = React.useState(inicialDataUser);
 
   const getUsers = () => {
     axios.get(`${process.env.REACT_APP_API}/users`)
@@ -57,7 +58,7 @@ export default function User() {
     setUserData({
       ...userData, 
       [evt.target.name]: value
-    },[])
+    }, [])
   }
 
   const handleChangePage = (event, newPage) => {
@@ -74,7 +75,7 @@ export default function User() {
     axios.post(`${process.env.REACT_APP_API}/users`, userData)
       .then(function (response) {
         getUsers()
-        setUserData({name: '', email: ''})
+        setUserData(inicialDataUser)
       })
       .catch(function (error) {
         console.log(error);
@@ -87,11 +88,11 @@ export default function User() {
       <form onSubmit={sendData} className={classes.root} noValidate autoComplete='off'>
         <TextField className={classes.separate} label='Name' 
           value={userData.name} onChange={handleChange}
-          name="name"
+          name='name'
         />
         <TextField className={classes.separate} label='Email' 
           value={userData.email} onChange={handleChange}
-          name="email"
+          name='email'
         />
         <Button className={classes.separate} 
           variant='contained' color='primary'
@@ -112,14 +113,14 @@ export default function User() {
             </TableHead>
             <TableBody>
               {rows.slice(page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage).map((row) => {     
-                return ( 
-                  <TableRow hover role='checkbox' tabIndex={-1} key={row.id}>
-                    <TableCell > { row.name  }</TableCell>
-                    <TableCell > { row.email } </TableCell> 
-                  </TableRow> 
-                ); 
-              })}  
+                page * rowsPerPage + rowsPerPage).map((row) => {     
+                  return ( 
+                    <TableRow hover role='checkbox' tabIndex={-1} key={row.id}>
+                      <TableCell > { row.name  }</TableCell>
+                      <TableCell > { row.email } </TableCell> 
+                    </TableRow> 
+                  ); 
+                })}  
             </TableBody>
           </Table>
         </TableContainer>
