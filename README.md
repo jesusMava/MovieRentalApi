@@ -1,24 +1,24 @@
 # README
+##
+You need to run this commands 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* rails db:create db:migrate db:seed
+* bundle install
 
-Things you may want to cover:
+## Create files
+ You need to create a .env file in client/ (this folder is to run react )
+`
+SKIP_PREFLIGHT_CHECK=true
+REACT_APP_API='http://localhost:3001/api/v1'
+`
 
-* Ruby version
+and to run the app you need 
+`rake start`
 
-* System dependencies
+if you have some problems create a file `Procfile` in the root directory with
+  this info
+`
+web: cd client && npm start
+api: rails s -p 3001
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`
