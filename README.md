@@ -21,4 +21,6 @@ if you have some problems create a file `Procfile` in the root directory with
 
 ```
 web: cd client && npm start
-api: rails s -p 3001```
+api: rails s -p 3001
+
+```
