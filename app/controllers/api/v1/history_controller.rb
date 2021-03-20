@@ -14,7 +14,7 @@ class Api::V1::HistoryController < ApplicationController
     @history = @history.map{ |el| el['movie_id']}
 
     @get_movies = @history.map{ |id| 
-      @movie = Movie.where("id = #{id}") 
+      Movie.where("id = #{id}") 
     }
 
     render json: @get_movies.flatten, status: :ok
